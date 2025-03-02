@@ -6,11 +6,11 @@ def index(request):
     return render(request,'index.html')
 
 def analyzed(request):
-    text = request.GET.get('text', "off")
-    removepunc = request.GET.get('removepunc', "off")
-    spaceremove = request.GET.get('spaceremove', "off")
-    removeline = request.GET.get('removeline', "off")
-    upper = request.GET.get('upper', "off")
+    text = request.POST.get('text', "off")
+    removepunc = request.POST.get('removepunc', "off")
+    spaceremove = request.POST.get('spaceremove', "off")
+    removeline = request.POST.get('removeline', "off")
+    upper = request.POST.get('upper', "off")
     if removepunc=="on":
         punc = '''.,?!:;'"()-–—…[]/&^<>'~\''''
         analytext = ""
@@ -41,6 +41,8 @@ def analyzed(request):
     hi={
         "texthere":text
     }
+    if removepunc!="on" and spaceremove!="on" and upper!="on" and removeline!="on":
+        return HttpResponse("Error")
     return render(request,"analyzed.html",hi)
 def link(request):
     return HttpResponse(''' <h1>Some link important for student</h1>

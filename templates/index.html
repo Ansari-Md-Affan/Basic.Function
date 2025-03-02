@@ -8,7 +8,7 @@
     <title>Text analyzer</title>
 </head>
 <body>
-<form action="/analyze" method="get">
+<form action="/analyze" method="post" >{% csrf_token %}
 <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
